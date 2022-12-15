@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react'
 import { useParams } from 'react-router-dom'
 import dummy from '../db/data.json'
+import Word from './Word'
 
 function Day() {
   // const day = useParams().day
@@ -16,10 +17,7 @@ function Day() {
       <table>
         <tbody>
           {wordList.map(word => (
-            <tr key={word.id}>
-              <td>{word.eng}</td>
-              <td>{word.kor}</td>
-            </tr>
+            <Word word={word} key={word.id} />
           ))}
         </tbody>
       </table>
