@@ -17,12 +17,25 @@ function Day() {
     history(`/day/${+day === days.length ? days.length : +day + 1}`)
   }
 
+  function delDay() {
+    if (window.confirm('삭제하겠습니까?')) {
+      fetch(`http://localhost:3001/days/${day}`, {
+        method: 'DELETE'
+      }).then(res => {
+        if (res.ok) {
+          history('/')
+        }
+      })
+    }
+  }
+
   return (
     <>
       <div className="day">
         <button onClick={prevPage}>◀️</button>
         <h2>Day {day}</h2>
         <button onClick={nextPage}>▶️</button>
+        <button onClick={delDay}>날짜 삭제</button>
       </div>
       {words.length === 0 && <span>Loading...</span>}
       <table>
